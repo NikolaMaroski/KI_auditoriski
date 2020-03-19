@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding elements</title>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var flag = 0;
+            $('#rectangle').on('click',function() {
+                $(this).css('border','3px solid blue');
+                flag = 1;
+
+
+        if(flag) {
+
+            $("#Container").bind("click", function (event) {
+                var heightWidth = this.getBoundingClientRect().height / 2;
+                $("#rectangle").css({'top': event.pageY - heightWidth, 'left': event.pageX - heightWidth});
+
+            });
+
+            $("#b1").click(function () {
+                $("#Container").append($("#rectangle").clone());
+            });
+
+        }
+
+      });
+
+
+
+
+
+        });
+    </script>
+    <style>
+        body {
+            background: yellow;
+            margin: 10px 30px 30px;
+            overflow: hidden;
+        }
+        #Container{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+
+        }
+        #rectangle{
+            border:2px solid black;
+            background-color:red;
+            height: 100px;
+            width: 100px;
+            display: block;
+            margin-left:45%;
+            margin-right:60%;
+            margin-top:225px;
+            position: relative;
+
+        }
+        #b1{
+            height: 50px;
+            width:110px;
+            position: absolute;
+            top: 10px;
+            left:10px;
+            background-color:lightseagreen;
+            opacity: 0.9;
+            font-weight: bolder;
+            font-size:22px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="Container">
+    <div id="rectangle"></div>
+    <button id="b1"  type="button">Add</button>
+</div>
+</body>
+</html>

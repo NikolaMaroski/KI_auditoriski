@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory</title>
+    <style>
+        button{
+            border: 2px solid black;
+            width: 5em;
+            height: 5em;
+            color:white;
+            font-size: 1em;
+            background: linear-gradient(to bottom, #1E5799, #7db9e8);
+        }
+        .back{
+            display:none;
+        }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<script>
+    var open  = false;
+    var first ;
+    var current;
+
+    function c(x) {
+        $("#b"+x).hide();
+        $("#d"+x).show();
+        if(!open){
+            first = x;
+        }if(open){
+            if($("#d"+first).val() == $("#d"+x).val()){
+                $("#d"+first).css({"background":"linear-gradient(to bottom,darkgray,gray"});
+                $("#d"+x).css({"background":"linear-gradient(to bottom,darkgray,gray"});
+            }else{
+                $("#d"+x).delay(500).hide(0);
+                $("#b"+x).delay(500).show(0);
+                $("#d"+first).delay(500).hide(0);
+                $("#b"+first).delay(500).show(0);
+            }
+        }
+        open = !open;
+
+    }
+</script>
+<table>
+    <tr>
+        <td><button class="front" id="b1" onclick="c(1)">1</button><button class="back" id="d1" value = "apple">apple</button></td>
+        <td><button class="front" id="b2" onclick="c(2)">2</button><button class="back" id="d2" value = "banana">banana</button></td>
+        <td><button class="front" id="b3" onclick="c(3)">3</button><button class="back" id="d3" value = "orange">orange</button></td>
+        <td><button class="front" id="b4" onclick="c(4)">4</button><button class="back" id="d4" value = "pear">pear</button></td>
+    </tr>
+    <tr>
+        <td><button class="front" id="b5" onclick="c(5)">5</button><button class="back" id="d5" value = "orange">orange</button></td>
+        <td><button class="front" id="b6" onclick="c(6)">6</button><button class="back" id="d6" value = "kiwi">kiwi</button></td>
+        <td><button class="front" id="b7" onclick="c(7)">7</button><button class="back" id="d7" value = "pear">pear</button></td>
+        <td><button class="front" id="b8" onclick="c(8)">8</button><button class="back" id="d8" value = "grape">grape</button></td>
+    </tr>
+    <tr>
+        <td><button class="front" id="b9" onclick="c(9)">9</button><button class="back" id="d9" value = "grape">grape</button></td>
+        <td><button class="front" id="b10" onclick="c(10)">10</button><button class="back" id="d10" value = "peach">peach</button></td>
+        <td><button class="front" id="b11" onclick="c(11)">11</button><button class="back" id="d11" value = "banana">banana</button></td>
+        <td><button class="front" id="b12" onclick="c(12)">12</button><button class="back" id="d12" value = "mango">mango</button></td>
+    </tr>
+    <tr>
+        <td><button class="front" id="b13" onclick="c(13)">13</button><button class="back" id="d13" value = "kiwi">kiwi</button></td>
+        <td><button class="front" id="b14" onclick="c(14)">14</button><button class="back" id="d14" value = "mango">mango</button></td>
+        <td><button class="front" id="b15" onclick="c(15)">15</button><button class="back" id="d15" value = "apple">apple</button></td>
+        <td><button class="front" id="b16" onclick="c(16)">16</button><button class="back" id="d16" value = "peach">peach</button></td>
+    </tr>
+</table>
+<script>
+    $(".front").hover(function(){
+        $(this).css({"background":"linear-gradient(to bottom, #94c433, #82ad2b)", "color": "#0985bf"});
+    }, function(){
+        $(this).css({"background":"linear-gradient(to bottom, #1E5799, #7db9e8)", "color": "white"});
+    });
+    $("table tr > :nth-child(even) > button").css({"border-color":"red"});
+</script>
+</body>
+</html>

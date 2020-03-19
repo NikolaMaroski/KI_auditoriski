@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<table style="border: solid; border-width: 2px">
+    <tr style="background-color: palevioletred">
+        <td> Име </td>
+        <td> Презиме </td>
+        <td> Состојба </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Задоволува </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Незадоволува </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Незадоволува </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Незадоволува </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Задоволува </td>
+    </tr>
+    <tr>
+        <td> Петко </td>
+        <td> Петков </td>
+        <td> Задоволува </td>
+    </tr>
+</table>
+<script>
+    function check(){
+        $("tr:contains('Задоволува')").css({"background-color":"lawngreen"})
+    }
+
+</script>
+
+<button style="margin-top: 2px" onclick="check()">Провери долг</button>
+</body>
+</html>

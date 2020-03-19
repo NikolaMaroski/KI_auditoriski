@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <link rel="stylesheet" href="jquery/jquery-ui.css">
+
+    <style>
+    #desc{
+        background-color:aliceblue;
+        width:220px;
+        padding:5px;
+        border:dotted 2px darkgray;
+        display:none;
+    }
+        .ui-autocomplete{
+            width:1200px;
+        }
+    </style>
+    <script src="jquery/jquery.js"></script>
+    <script src="jquery/jquery-ui.js"></script>
+
+</head>
+<body>
+    <label>Select a movie:</label>
+    <br>
+    <input id="input">
+    <br>
+    <br>
+    <div id="desc"></div>
+    <script>
+        var movies=[
+            {
+                label:"Oblivion",
+                desc:"sdgsdgds sdgsdgsdgsdgsdgsd sdgsdgsdgsdgsdg"
+            },
+            {
+                label:"Enders game",
+                desc:"Dfsfdssd dfsdfsdf"
+            }
+        ];
+
+        $("#input").autocomplete({
+            source:movies,
+            minLength:0,
+            focus: function (event,ui) {
+                // language=JQuery-CSS
+                $("#input").val(ui.item.label);
+                return false;
+            },
+            select:function (event,ui) {
+                $("#input").val(ui.item.label);
+                $("#desc").html(ui.item.desc).show();
+            }
+        }).autocomplete("instance")._renderItem = function (ul,item) {
+            return $("<li>")
+                .append("<a>" + item.label + "<br>" + item.desc + "</a>" )
+                .appendTo(ul);
+        }
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+</head>
+<body onload="updateClock() ; setInterval('updateClock()',1000)">
+        <p style="text-align: center ; font-size:60px">Time Color Clcok:</p>
+        <br>
+        <div style="text-align: center; font-size: xx-large">
+        <span id="hours" style="font-size:xx-large">00</span>
+        <span style="font-size: xx-large">:</span>
+        <span id="minutes" style="font-size: xx-large">00</span>
+        <span style="font-size: xx-large">:</span>
+        <span id="seconds" style="font-size: xx-large">00</span>
+        </div>
+    <script type="text/javascript">
+        function updateClock() {
+
+
+            var dateNow = new Date();
+
+            var h = dateNow.getHours();
+            var m = dateNow.getMinutes();
+            var s = dateNow.getSeconds();
+
+            h = "" + h;
+            m = "" + m;
+            s = "" + s;
+
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if(s>0){
+                document.body.style.background = 'red'
+            }if(s>10){
+                document.body.style.background = 'green'
+            }if(s>20){
+                document.body.style.background = 'yellow'
+            }if(s>30){
+                document.body.style.background = 'blue'
+            }if(s>40){
+                document.body.style.background = 'pink'
+            }
+            if(s>50){
+                document.body.style.background = 'orange'
+            }
+            if(s>60){
+                document.body.style.background = 'purple'
+            }
+
+
+
+
+            document.getElementById("hours").innerHTML = h;
+            document.getElementById("minutes").innerHTML = m;
+            document.getElementById("seconds").innerHTML = s;
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tooltip</title>
+    <link rel="stylesheet" href="jquery/jquery-ui.css">
+    <style>
+        body{
+            margin: 40px;
+        }
+        .ui-tooltip {
+            width:70px;
+            background: #000;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            border: 2px solid white;
+            border-radius: 25px;
+            padding: 0;
+            opacity: 1;
+        }
+
+        .ui-tooltip-content {
+            position: relative;
+            padding: 0.75em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+
+        .ui-tooltip-content::before {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            display: block;
+            width: 0;
+            bottom: -13px;
+            left: 22px;
+            border-color: #FFF transparent;
+            border-width: 13px 13px 0;
+        }
+
+        .ui-tooltip-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            display: block;
+            width: 0;
+            bottom: -10px;
+            left: 25px;
+            border-color: #000 transparent;
+            border-width: 10px 10px 0;
+        }
+    </style>
+    <script src = "jquery/jquery.js"></script>
+    <script src = "jquery/jquery-ui.js"></script>
+</head>
+<body>
+<select id = "dropMenu">
+    <option value="">Choose animation</option>
+    <option value="bounce">Bounce</option>
+    <option value="clip">Clip</option>
+    <option value="fold">Fold</option>
+    <option value="scale">Scale</option>
+    <option value="custom">Custom</option>
+</select><br><br>
+<label>Име:</label><br>
+<input type="text">
+<script>
+    $(function(){
+        $('input').tooltip({
+            position: { my: "left-35 bottom-25", at: "left" },
+            items : "input",
+            content: "ИМЕ"
+        });
+    });
+    $("#dropMenu").on("change", function() {
+        var animation = $(this).val();
+        if(animation == "custom"){
+            var $input = $('input');
+            $input.tooltip({
+                show: {effect: "fade", duration: 100},
+                open: function (event, ui) {
+                    ui.tooltip.animate({
+                        left: $input.width()
+                    }, 350, function () {
+                        ui.tooltip.animate({
+                            left: 5
+                        }, 350);
+                    });
+                },
+                hide: {effect: "fade", duration: 100}
+            });
+
+        }
+        else {
+            $("input").tooltip({
+                show: {effect: animation, duration: 500},
+                open:false
+            });
+        }
+    });
+</script>
+</body>
+</html>
