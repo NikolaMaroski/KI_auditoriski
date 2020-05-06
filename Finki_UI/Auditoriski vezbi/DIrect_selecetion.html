@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Direct selection</title>
+
+    <script type="text/javascript" src="jquery/jquery1.4.2.js"></script>
+
+    <script type="text/javascript" src="jquery/jquery-ui-1.8.2.custom.min.js"></script>
+
+
+
+
+    <style type="text/css">
+        body {
+            font: bold 12px arial;
+        }
+
+        .tr-hover{
+            cursor:pointer;
+        }
+
+        .row-selected{
+            background:lightgray;
+        }
+    </style>
+
+
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $("tr").hover(
+                function () {
+                    $(this).addClass("tr-hover");
+                },
+                function () {
+                    $(this).removeClass("tr-hover");
+                }
+            );
+            $("input[type=checkbox]").click(function(){
+                if ($(this).attr("checked") == true){
+                    $("#"+$(this).attr("value")).addClass("row-selected");
+                } else {
+                    $("#"+$(this).attr("value")).removeClass("row-selected");
+                }
+            });
+            $("#delete").click(function(){
+                if ($(".row-selected").length == 0){
+                    alert("No mails selected");
+                } else {
+                    $(".row-selected").hide();
+                }
+            });
+            $("#restore").click(function(){
+                $(".row-selected").show();
+            });
+        });
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <input type="button" value="delete" id="delete"/>
+    <input type="button" value="restore" id="restore"/>
+
+    <table cellspacing="0">
+        <tr id="0"><td><input type="checkbox" value="0  "/></td><td>Sender 1
+        </td><td>Subject 2</td></tr>
+        <tr id="1"><td><input type="checkbox" value="1  "/></td><td>Sender 2
+        </td><td>Subject 3</td></tr>
+        <tr id="2"><td><input type="checkbox" value="2  "/></td><td>Sender 3
+        </td><td>Subject 4</td></tr>
+        <tr id="3"><td><input type="checkbox" value="3  "/></td><td>Sender 4
+        </td><td>Subject 5</td></tr>
+        <tr id="4"><td><input type="checkbox" value="4  "/></td><td>Sender 5
+        </td><td>Subject 6</td></tr>
+        <tr id="5"><td><input type="checkbox" value="5  "/></td><td>Sender 6
+        </td><td>Subject 7</td></tr>
+        <tr id="6"><td><input type="checkbox" value="6  "/></td><td>Sender 7
+        </td><td>Subject 8</td></tr>
+
+    </table>
+</body>
+</html>
