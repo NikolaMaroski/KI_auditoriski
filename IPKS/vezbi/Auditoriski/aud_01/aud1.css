@@ -1,0 +1,8 @@
+#div1{
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    margin: 100px auto auto;
+    background-color: #1e7e34;
+    border: 5px dashed black;
+}
