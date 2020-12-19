@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vezba_Predavanje</title>
+    <style type="text/css">
+        .thumbs {
+            width: 522px;
+            height: 170px;
+            padding: 5px;
+            float: right;
+        }
+        .mainimg {
+            width: 289px;
+            padding: 5px;
+            float: left;
+        }
+        .imgCover {
+            height: 373px;
+        }
+        img { border: 1px solid black}
+    </style>
+    <script type="text/javascript">
+        let interval = null;
+        let speed = 6;
+        let count = 0;
+
+        function run(){
+            count += speed;
+
+            if(count >= 315){
+                window.clearInterval(interval);
+                interval = null;
+            }
+
+            let bigImage = document.getElementById("imgCover");
+            bigImage.style.width = 1.79 * count + "px";
+            bigImage.style.height = count + "px";
+        }
+
+        function display(imgfile){
+            if(interval)
+                return;
+
+            let bigImage = document.getElementById("imgCover");
+            let newNode = document.createElement("img");
+            newNode.id = "imgCover";
+            newNode.src = "fullsize/" + imgfile;
+            newNode.alt = "Large image";
+            newNode.className = "imgCover";
+            newNode.style.width = "0px";
+            newNode.style.height = "0px";
+            bigImage.parentNode.replaceChild(newNode, bigImage);
+            count = 0;
+            interval = window.setInterval("run()",15);
+        }
+
+        let car = {
+            type:"Fiat",
+            model: "500",
+            color: "white"
+        };
+        console.log("Car object",car);
+    </script>
+</head>
+<body>
+<div id="mainimg" class="mainimg">
+    <img id="imgCover" src="fullsize/bmw.jpg" alt="Full image cover" class="imgCover"/>
+</div>
+<div id="id=thumbs" class="thumbs">
+    <img src="fullsize/bmw2.jpg" alt="bmw2" onclick="display('bmw2.jpg')"/>
+    <img src="fullsize/bmw3.jpg" alt="bmw3" onclick="display('bmw3.jpg')"/>
+    <img src="fullsize/bmw4.jpg" alt="bmw4" onclick="display('bmw4.jpg')"/>
+</div>
+
+
+</body>
+</html>

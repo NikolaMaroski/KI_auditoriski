@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grupa 1 - 2017</title>
+    <style>
+        .grades {
+            float: left;
+            clear: none;
+            display: block;
+            padding: 0 1em 0 8px;
+        }
+
+        label {
+            display: inline-block;
+        }
+
+        input {
+            margin: 4px 4px 0 0;
+        }
+
+        table, th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        /*label {*/
+        /*    float: left;*/
+        /*    clear: none;*/
+        /*    display: block;*/
+        /*    padding: 0 1em 0 8px;*/
+
+        /*}*/
+
+    </style>
+</head>
+<body>
+
+<h1>Details</h1>
+<div><label for="name">Name:</label>&nbsp;&nbsp;&nbsp; <input id="name" placeholder="Enter name"></div>
+<br>
+<div><label for="index">Index:</label>&nbsp;&nbsp;&nbsp; <input id="index" placeholder="Enter index"></div>
+<br>
+<div><label for="phone">Phone:</label>&nbsp;&nbsp;&nbsp; <input id="phone" placeholder="Enter phone"></div>
+<br>
+<label>Grade</label>
+<div>
+    <label class="grades" for="grade5">
+        <input id="grade5" name="grade" value="5" type="radio" placeholder="Enter phone"><br>
+        5
+    </label>
+    <label class="grades" for="grade6">
+        <input id="grade6" name="grade" value="6" type="radio" placeholder="Enter phone"><br>
+        6
+    </label>
+    <label class="grades" for="grade7">
+        <input id="grade7" name="grade" value="7" type="radio" placeholder="Enter phone"><br>
+        7
+    </label>
+    <label class="grades" for="grade8">
+        <input id="grade8" name="grade" value="8" type="radio" placeholder="Enter phone"><br>
+        8
+    </label>
+    <label class="grades" for="grade9">
+        <input id="grade9" name="grade" value="9" type="radio" placeholder="Enter phone"><br>
+        9
+    </label>
+    <label class="grades" for="grade10">
+        <input id="grade10" name="grade" value="10" type="radio" placeholder="Enter phone"><br>
+        10
+    </label>
+</div>
+<div class="grades">
+    <div><label for="sessionId">Session</label></div>
+    <select id="sessionId">
+        <option value="January">January</option>
+        <option value="June">June</option>
+        <option value="September">September</option>
+    </select>
+</div>
+<button onclick="addStudent()">Import student</button>
+<div class="revertHis">
+    <h1>Revert history</h1>
+    <ul id="unorderedListHistory">
+    </ul>
+</div>
+
+<div><h1>Students (average grade:<span id="averageId"></span>)</h1></div>
+
+<table id="studentsTable">
+    <thead>
+    <th>Name</th>
+    <th>Index</th>
+    <th>Phone</th>
+    <th>Grade</th>
+    <th>Session</th>
+    <th>Actions</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+<script>
+
+    let students = [];
+    let revertStudents = [];
+    function average(){
+        let gradeCells = document.getElementsByClassName('gradeVal');
+        let sum = 0;
+        for(let i=0; i<gradeCells.length; i++){
+            sum += parseInt(gradeCells[i].innerHTML);
+        }
+
+        let average = sum/gradeCells.length;
+        document.getElementById("averageId").innerHTML = (average.toFixed(2)).toString();
+    }
+    function addStudent() {
+        let name = document.getElementById('name').value;
+        let index = document.getElementById('index').value;
+        let phone = document.getElementById('phone').value;
+        let session = document.getElementById('sessionId').value;
+        let grades = document.getElementsByName("grade");
+        let grade_val;
+
+        if (name == null || name === "" || index == null || index === "" || phone == null || phone === "" || session == null || session === "") {
+            alert("Please fill all of the inputs!");
+            return;
+        } else {
+            phone = phone.substring(0, 3) + "/" + phone.substring(3, 6) + "-" + phone.substring(6, phone.length);
+        }
+
+
+        for (let i = 0; i < grades.length; i++) {
+            if (grades[i].checked) {
+                grade_val = grades[i].value;
+            }
+        }
+
+        let student = {
+            name: name,
+            index: index,
+            phone: phone,
+            grade: grade_val,
+            session: session
+        };
+
+        students.push(student);
+
+        let tableRef = document.getElementById("studentsTable").getElementsByTagName('tbody')[0];
+        //Insert row in the table at the last row
+        let newRow = tableRef.insertRow(tableRef.rows.length);
+        //insert a cell in the row at index 0
+        let newCellName = newRow.insertCell(0);
+        let newCellIndex = newRow.insertCell(1);
+        newCellIndex.setAttribute('id','indexCol');
+        let newCellPhone = newRow.insertCell(2);
+        let newCellGrade = newRow.insertCell(3);
+        newCellGrade.setAttribute('id','gradeVal');
+        let newCellSession = newRow.insertCell(4);
+        let newCellActions = newRow.insertCell(5);
+        newCellActions.setAttribute("id", 'buttonsIds');
+
+
+        //Option 1
+        let textName = document.createTextNode(name);
+        newCellName.appendChild(textName);
+        //Option 2
+        newCellIndex.innerHTML = index;
+        newCellPhone.innerHTML = phone;
+        newCellGrade.innerHTML = grade_val;
+        newCellSession.innerHTML = session;
+
+        // let buttonConfirm = document.createElement("BUTTON");
+        // let confirmText  = document.createTextNode("Confirm");
+        // buttonConfirm.appendChild(confirmText);
+        // buttonConfirm.setAttribute('onClick', confirmStudent(this));
+        // newCellActions.appendChild(buttonConfirm);
+        //
+        // let buttonRevert = document.createElement("BUTTON");
+        // let revertText  = document.createTextNode("Revert");
+        // buttonRevert.appendChild(revertText);
+        // buttonRevert.setAttribute('onClick', revertStudent(this));
+        // newCellActions.appendChild(buttonRevert);
+
+        let count =1;
+        newCellActions.innerHTML = "<button id='confirm' class='btn' onClick='confirmStudent(this);'>Confirm</button>&nbsp;<button class='btn' id='revert' onclick='revertStudent(this);'>Revert</button>";
+        count++;
+        average();
+
+
+        // let sessions = document.getElementsByTagName("option");
+        // let session_val;
+        // for(let i=0; i<sessions.length; i++){
+        //     if(sessions[i].selected){
+        //         session_val = sessions[i].value;
+        //     }
+        // }
+    }
+
+    function confirmStudent(ref) {
+        let dis = ref.parentNode;
+        let con = dis.firstChild;
+        con.setAttribute('disabled',true);
+        let rev = dis.lastChild;
+        rev.setAttribute('disabled',true);
+        let row = ref.parentNode.parentNode;
+        row.style.backgroundColor = "green";
+    }
+
+    function revertStudent(ref) {
+
+        let index = document.getElementById('indexCol').innerText;
+        let grade = document.getElementById('gradeVal').innerHTML;
+        let revertStudent = {
+            index: index,
+            grade: grade
+        };
+        revertStudents.push(revertStudent);
+        let tr = ref.parentNode.parentNode;
+        tr.parentNode.removeChild(tr);
+        updateHistory(revertStudent);
+        average();
+
+        // console.log('Ref',ref);
+        // console.log('Ref.pN',ref.parentNode);
+        // console.log('Ref.pN.pN',ref.parentNode.parentNode);
+        //
+        // let tr = ref.parentNode.parentNode;
+        // console.log('tr',tr);
+        // console.log('tr.pN',tr.parentNode);
+        // console.log('tr.pN.rC',tr.parentNode.removeChild(tr));
+    }
+
+    function updateHistory(revertStudent) {
+        let list = document.getElementById("unorderedListHistory");
+            let liElement = document.createElement('li');
+            liElement.appendChild(document.createTextNode(revertStudent.index + " - " + revertStudent.grade));
+            list.appendChild(liElement);
+    }
+</script>
+</html>

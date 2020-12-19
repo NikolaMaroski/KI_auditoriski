@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca 1</title>
+    <script>
+        function removeColor() {
+            let s = document.getElementById("colorSelect");
+            console.log(s.value);
+            s.remove(s.selectedIndex)
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <select id="colorSelect">
+            <option>Red</option>
+            <option>Green</option>
+            <option>White</option>
+            <option>Black</option>
+        </select>
+        <input type="button" onclick="removeColor()" value="Select na Remove"><br>
+    </form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise1</title>
+</head>
+<body>
+<script>
+    let student = {
+        name: "David Rayy",
+        sclass: "VI",
+        rollno: 12
+    };
+
+    function _keys(obj){
+        if(!isObject(obj)) return [];
+        if(Object.keys) return Object.keys(obj);
+        let keys = [];
+        for(let key in obj)keys.push(key);
+        return keys;
+    }
+    function isObject(obj){
+        let type = typeof obj;
+        return type === "function" || type === 'object' && !!obj;
+    }
+    console.log(_keys(student));
+    console.log(_keys());
+
+    let students = [
+        {
+            name: "Davfsdfid Rayy",
+            sclass: "VI",
+            rollno: 1244
+        },
+        {
+            name: "sdf Rayy",
+            sclass: "VI",
+            rollno: 1342
+        },
+        {
+            name: "sdf sdfsd",
+            sclass: "sdfVI",
+            rollno: 1232
+        }
+    ];
+
+    function printData(arr){
+        let keys = [];
+        for(let i=0; i<arr.length; i++){
+            let stud = "'" + arr[i].name + "'" + arr[i].sclass + "'" + arr[i].rollno + ".";
+            console.log("Stud ", stud);
+        }
+    }
+    function printObj(obj) {
+        if(!isObject()) return [];
+        if(Object.keys) return Object.keys(obj);
+        let keys = [];
+        for(let key in obj) keys.push(key);
+        return keys;
+    }
+
+    console.log(printData(students));
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca 4</title>
+    <script>
+        function addComplexNumbers() {
+            let real1 = document.getElementById("real1").value;
+            let im1 = document.getElementById("i1").value;
+            let real2 = document.getElementById("real2").value;
+            let im2 = document.getElementById("i2").value;
+            let real = parseInt(real1) + parseInt(real2);
+            let imaginary = parseInt(im1) + parseInt(im2);
+            console.log(im1);
+            console.log(im2);
+            console.log(real);
+            console.log(imaginary);
+            document.getElementById("real3").value = real;
+            document.getElementById("i3").value = imaginary;
+        }
+    </script>
+</head>
+<body>
+
+<input type="text" id="real1" style="margin-top: 10px"><span> </span><input type="text" id="i1"><i> i</i>
+<br>
+<input type="text" id="real2" style="margin-top: 10px"><span> </span><input type="text" id="i2"><i> i</i>
+<br>
+<button type="button" style="margin-top: 10px" onclick="addComplexNumbers()">Add</button>
+<br>
+<input type="text" id="real3" style="margin-top: 10px"><span> </span><input type="text" id="i3"><i> i</i>
+
+
+</body>
+</html>

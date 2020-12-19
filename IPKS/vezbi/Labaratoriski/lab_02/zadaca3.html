@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca 3</title>
+    <script>
+        function func() {
+            document.getElementsByTagName("body")[0].style.fontFamily = "Arial";
+            let liElements =  document.getElementsByTagName('li');
+            Array.from(liElements).forEach((li) => li.style.backgroundColor = "red")
+            document.getElementById('name').innerText = 'Nikola';
+            document.getElementById('index').innerText = '161226';
+            document.getElementById('hometown').innerText = 'Skopje';
+
+            // let liElements2 = document.querySelectorAll('li');
+            // liElements2.forEach(l => l.style.fontFamily = "sans-serif")
+        }
+    </script>
+</head>
+<body>
+    <h1>About me</h1>
+    <ul>
+        <li>Name: <span id="name"></span></li>
+        <li>Index: <span id="index"></span></li>
+        <li>Hometown: <span id="hometown"></span></li>
+    </ul>
+    <input type="button" onclick="func()" value="Change">
+</body>
+</html>

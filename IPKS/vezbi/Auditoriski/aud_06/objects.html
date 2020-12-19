@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects</title>
+</head>
+<body>
+<script>
+    function Person(first, last, age, eyecolor) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eyecolor;
+        this.name = function () {
+            return this.firstName + " " + this.lastName;
+        }
+    }
+
+    let person = new Person("John", "Doe", 50, "blue");
+    console.log("Person object: ", person);
+
+    person.nationality = "English";
+    console.log("Added atttribute: ",person);
+
+    // Person.getAge = () => {return this.age};
+
+    Person.getAge2 = function () {return this.age;};
+    console.log("Added function: ", person);
+
+    console.log("function: ", person.name());
+
+    let o = {
+        a: 4,
+        get b(){
+            return this.a + 1;
+        },
+        set c(x){
+            this.a = x/2;
+        }
+    };
+
+    console.log("O a", o.a);
+    console.log("O get A", o.b);
+    o.c  = 30;
+    console.log("O set A", o.a);
+
+    let Animal = {
+        type: "lion",
+        displayType: function () {
+            console.log(this.type)
+        }
+    };
+
+    let lion = Object.create(Animal);
+    lion.displayType();
+
+    let animal2 = Object.create(Animal);
+    animal2.type = "fish";
+    animal2.displayType();
+
+    let fruit = prompt("Which fruit to buy?", "apple");
+    let bag = {
+        [fruit]: 5
+    };
+    alert(bag.apple)
+
+
+</script>
+</body>
+</html>

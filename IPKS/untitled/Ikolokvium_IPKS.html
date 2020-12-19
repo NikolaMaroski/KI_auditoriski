@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1_Kolokvium_IPKS</title>
+    <style>
+            #divIn{
+                margin: 5px;
+            }
+    </style>
+</head>
+<body>
+<div id="divIn">
+    <label for="figId"></label><input id="figId" type="text">&nbsp;<button id="btnId" onclick="drawElement()">постави</button>
+</div>
+<div id="div1">
+
+</div>
+<script>
+    let figures=[];
+    let area = document.getElementById("div1");
+
+    function formatText(text){
+        console.log('Texxt 1', text);
+        let output ="";
+        let output1 ="";
+        for(let i=0; i<text.length; i++){
+            if(i%2===0){
+                output += text[i].toLowerCase();
+                output1 += text.charAt(i).toLowerCase();
+            }else{
+                output += text[i].toUpperCase();
+                output1 += text.charAt(i).toUpperCase()
+            }
+        }
+        return output1;
+       //  let arr = [];
+       //  for (let k = 0; k < text.length; k++) {
+       //      let newString = "";
+       //      for (let j = 0; j < text[k].length; j++) {
+       //          if (j % 2 === 0) {
+       //              newString += text[k].charAt(j).toUpperCase()
+       //          } else {
+       //              newString += text[k].charAt(j).toLowerCase()
+       //          }
+       //      }
+       //      arr.push(newString)
+       //  }
+       //  console.log("new",arr);
+       //  return arr.join('').toString();
+
+    }
+
+    function drawElement() {
+        let inputParts = [];
+        let input = document.getElementById('figId').value;
+        inputParts = input.split(",");
+        let color = inputParts[0];
+        let width = inputParts[1];
+        let height = inputParts[2];
+        let text = inputParts[3];
+
+        let textFormatted = formatText(text);
+
+        // let op = str.split(' ').map((a,i)=>a.split('').map((e,i)=>i%2==0 ? e.toUpperCase() : e.toLowerCase()).join('')).join(' ');
+        // let text2 = (text) => text.map((c, i) => i%2===0 ? c.toLowerCase() : c.toUpperCase());
+
+        let newElement = document.createElement('div');
+        newElement.style.backgroundColor = color;
+        newElement.style.height = height + "px";
+        newElement.style.width = width + "px";
+        newElement.innerText = textFormatted;
+        newElement.addEventListener('click', function () {
+            this.remove()
+        });
+        area.append(newElement);
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca 4 i 6</title>
+</head>
+<body>
+<script>
+    function transformObjectToList(obj){
+        let list = [];
+        for(let i in obj){
+            let temp = [];
+            temp.push(i);
+            temp.push(obj[i]);
+            list.push(temp);
+        }
+        console.log("List in function: ",list);
+        return list;
+    }
+
+    let newObj = {red: "#FF0000", green: "#00FF00", white: "#FFFFFF"};
+    console.log("Exercise 4: ", transformObjectToList(newObj));
+    console.log("List: ", [["1","eden"],["2",'dva']]);
+
+    console.log("========================Second Attempt========================");
+
+    function key_value_paris(obj){
+        let keys = _keys(obj);
+        console.log("Keys: ", keys);
+        // let pairs = [keys.length];
+        let pairs = Array(keys.length);
+        console.log("Pairs: ", pairs);
+        for(let i=0; i<keys.length; i++){
+            pairs[i] = [keys[i], obj[keys[i]]];
+            console.log("Keys[i]: ", keys[i]);
+            console.log("obj[keys[i]]: ", obj[keys[i]]);
+            console.log("Each pairs: ", pairs[i]);
+        }
+        console.log("Pairs list: ", pairs);
+        return pairs;
+    }
+
+    function _keys(obj) {
+        console.log("Object : ", Object);
+        console.log("Object keys: ", Object.keys);
+        console.log("Object.keys(obj) : ", Object.keys(obj));
+        if(Object.keys) return Object.keys(obj);
+        let keys = [];
+        for(let key in obj) keys.push(key);
+        console.log("Keys : ", keys);
+        return keys
+    }
+
+    let newObj2 = {red: "#FF0000", green: "#00FF00", white: "#FFFFFF"};
+    console.log("Exercise 4 part 2: ", key_value_paris(newObj2));
+
+    console.log(" =============================================== Exercise 6 ===============================================");
+    function Clock() {
+        this.clock = new Date();
+        this.hours = this.clock.getHours();
+        this.minutes = this.clock.getMinutes();
+        this.sec = this.clock.getSeconds();
+        this.time = () => {  console.log("Current time inside object: " + this.hours + " " + this.minutes + " " + this.sec)};
+        console.log("Date:", this.clock);
+        console.log("hours:", this.hours);
+        console.log("min:", this.minutes);
+        console.log("sec:", this.sec);
+    }
+
+    Clock.prototype.run = function(){
+        setInterval(this.update.bind(this),1000);
+    };
+
+    Clock.prototype.update = function() {
+        this.updateTime(1);
+        console.log("Current time: " + this.hours + " " + this.minutes + " " + this.sec);
+    };
+
+    Clock.prototype.updateTime = function(secs) {
+        this.sec += secs;
+        if(this.sec >=60){
+            this.minutes++;
+            this.sec = 0;
+        }else if(this.minutes >= 60){
+            this.hours++;
+            this.minutes = 0;
+        }else if(this.hours >= 24){
+            this.hours = 0;
+        }
+    };
+    let my_clock2 = new Clock();
+    my_clock2.time();
+    my_clock2.run();
+
+</script>
+</body>
+</html>
