@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca1</title>
+</head>
+<script>
+    function removeDuplicates(arr){
+        let res = [];
+        for(let i=0; i<arr.length; i++){
+            if(checkDuplicates(res, arr[i])){
+                res.push(arr[i]);
+            }
+        }
+        return res;
+    }
+
+    function checkDuplicates(res, elem) {
+        for(let i=0; i<res.length; i++){
+            if(res[i] === elem)
+                return false;
+        }
+        return true;
+    }
+
+    function removeDuplicates2(arr){
+        return [... new Set(arr)];
+    }
+    // var myArray = ['a', 1, 'a', 2, '1'];
+    // var unique = myArray.filter((v, i, a) =>{ console.log("v  i a " + v + i  + a);
+    //     a.indexOf(v) === i});
+    // console.log(unique);
+
+    console.log("Filter duplicates: " + removeDuplicates([1,2,1,2,3,3]));
+    console.log("Filter duplicates: " + removeDuplicates2([1,2,1,2,3,3]));
+</script>
+<body>
+
+</body>
+</html>

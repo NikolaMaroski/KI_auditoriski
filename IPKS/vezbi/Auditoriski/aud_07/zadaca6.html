@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zadaca6</title>
+</head>
+<script>
+    function difference(arr1, arr2) {
+        return arr1.filter(x => !arr2.includes(x)).concat(arr2.filter(x => !arr1.includes(x)));
+    }
+
+    function diff(arr1, arr2) {
+        console.log("Arr1 " + arr1);
+        console.log("Arr2 " + arr2);
+        let a1 = flatten(arr1, true);
+        let a2 = flatten(arr2, true);
+        console.log("a1 flatten " + a1);
+        console.log("a2 flatten " + a2);
+
+        let a = [];
+        let diff = [];
+        for (let i = 0; i < a1.length; i++) {
+            console.log("a[a1[i]] -> " + a[a1[i]]);
+            a[a1[i]] = false;
+            console.log("a[a1[i]] After -> " + a[a1[i]]);
+        }
+        for (let i = 0; i < a2.length; i++) {
+            console.log("a[a2[i]] -> " + a[a2[i]]);
+            if (a[a2[i]] === false) {
+                delete a[a2[i]];
+            } else {
+                a[a2[i]] = true;
+            }
+            console.log("a[a2[i]] -> After " + a[a2[i]]);
+        }
+        for (let k in a) {
+            console.log("a array" + typeof  a + " array: " + a);
+            console.log("a " + k);
+            diff.push(k);
+        }
+
+        return diff;
+
+    }
+
+
+    let flatten = (a, shallow, r) => {
+        console.log("================================================");
+        console.log("A shallow r " + a + " " + shallow + " " + r);
+        if (!r) {
+            r = [];
+        }
+        console.log("r " + r);
+        console.log("r typeof " + r + " " + typeof r);
+        if (shallow) {
+            console.log("r then " + r.concat.apply(r,a));
+            return r.concat.apply(r, a);
+        }
+        for (let i = 0; i < a.length; i++) {
+            if (a[i].constructor === Array) {
+                flatten(a[i], shallow, r);
+            } else {
+                r.push(a[i]);
+            }
+        }
+        console.log("r then 2 " + r);
+        return r;
+    };
+
+    console.log("Difference: " + diff([1, 2, 3], [100, 2, 1, 10]));
+    console.log("Difference: " + diff([1, 2, 3, 4, 5], [1, [2], [3, [[4]]], [5, 6]]));
+</script>
+<body>
+
+</body>
+</html>

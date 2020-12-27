@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca3</title>
+</head>
+<script>
+    function Circle(radius, height){
+        this.radius = radius;
+        this.height = height;
+        this.area = function () {
+            return Math.PI * Math.pow(this.radius,2);
+        }
+    }
+
+    Circle.prototype.volume = function() { return Math.PI * Math.pow(this.radius, 2)  * this.height;};
+
+    let newCircle = new Circle(4,2);
+    let newCircle1 = new Circle(1,2);
+    let newCircle2 = new Circle(2,2);
+    console.log("Circle radius: " + newCircle.radius);
+    console.log("Circle height: " + newCircle.height);
+    console.log("Circle area: " + newCircle.area());
+    console.log("Circle volume: " + newCircle.volume());
+    console.log("Circle volume 1: " + newCircle1.volume());
+    console.log("Circle volume 2: " + newCircle2.volume());
+</script>
+<body>
+
+</body>
+</html>

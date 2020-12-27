@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Union of Arrays</title>
+</head>
+    <script>
+        function unionOfArrays(arr1, arr2) {
+            console.log("The input arrays: ", arr1);
+            console.log("The input arrays: ", arr2);
+            let newArr = arr1 + "," + arr2;
+            console.log(newArr);
+        }
+
+        function union(arr1, arr2) {
+            if ((arr1 == null) || (arr2 == null))
+                return void 0;
+
+            let obj = {};
+            console.log("Obj" + obj);
+
+            for (let i = arr1.length - 1; i >= 0; i--) {
+                console.log("Inside arr1 loop" +obj[arr1[i]]  );
+                console.log("Inside arr1 loop" +arr1[i] );
+                obj[arr1[i]] = arr1[i];
+            }
+
+            for (let i = arr2.length - 1; i >= 0; i--) {
+                console.log("Inside arr2 loop" +obj[arr1[i]]  );
+                console.log("Inside arr2 loop" +arr1[i] );
+                obj[arr2[i]] = arr2[i];
+            }
+
+            let result = [];
+            let result2 = [];
+
+            for (let n in obj) {
+                if (obj.hasOwnProperty(n)) {
+                    let r = result.push(obj[n]);
+                    console.log("Push arr elem " + r);
+                }
+            }
+
+            for (let n in obj) {
+                if (obj.hasOwnProperty(n)) {
+                    let r1 = result2.unshift(obj[n]);
+                    console.log("Unshift arr elem " + r1);
+                }
+            }
+
+            return result;
+        }
+
+        // console.log("Union" + unionOfArrays([1,2,3], [4,5,6]));
+        console.log("Union2 -> " + union([1,2,3], [4,5,6]));
+    </script>
+<body>
+
+</body>
+</html>

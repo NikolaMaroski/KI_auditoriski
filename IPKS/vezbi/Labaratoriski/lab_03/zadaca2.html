@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca2</title>
+</head>
+<script>
+    function removeElement(arr, elem) {
+        let res = [];
+        for(let i=0; i<arr.length; i++){
+            if(arr[i] !== elem)
+                res.push(arr[i]);
+        }
+        return res;
+    }
+
+    console.log("Remove element: " + removeElement([2,5,9,6],5));
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadaca4</title>
+</head>
+<script>
+    // let Book = new Object();
+    function Book(title, author, alreadyRead){
+        this.title = title;
+        this.author = author;
+        this.alreadyRead = alreadyRead;
+    }
+
+    let books =[
+        {
+            title: 'New World',
+            author: 'Michao Kaku',
+            alreadyRead: false
+        },
+        {
+            title: 'Albert Einstein Biography',
+            author: 'Albert Einstein',
+            alreadyRead: true
+        },
+        {
+            title: 'Dark Net',
+            author: 'Jamie Bartlett',
+            alreadyRead: true
+        },
+        {
+            title: 'Code First',
+            author: 'Julia Lerman and Rowan Miller',
+            alreadyRead: false
+        },
+        {
+            title: 'Domain-driven design',
+            author: 'Eric Evans',
+            alreadyRead: false
+        }
+    ];
+
+    for(let i=0; i<books.length; i++){
+        if(books[i].alreadyRead){
+            console.log("You already read \"" + books[i].title + "\" by \"" + books[i].author + "\"");
+        }else{
+            console.log("You still need to read \"" + books[i].title + "\" by \"" + books[i].author + "\"");
+        }
+    }
+
+
+</script>
+<body>
+
+</body>
+</html>

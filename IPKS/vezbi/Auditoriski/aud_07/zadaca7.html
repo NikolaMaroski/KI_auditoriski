@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zadaca 7</title>
+</head>
+<script>
+    function num_string_range(from, to, step) {
+        let result = [];
+        if(step === 0 || (typeof from === "undefined") || (typeof to === "undefined") || (typeof from !== typeof to))
+            return false;
+        if(isNaN(from)){
+            if(from.charCodeAt(0) <= to.charCodeAt(0)) {
+                for (let i = from.charCodeAt(0); i < to.charCodeAt(0); i = i + step) {
+                    result.push(String.fromCharCode(i));
+                }
+            }else {
+                for (let i = from.charCodeAt(0); i >= to.charCodeAt(0); i = i - step) {
+                    result.push(String.fromCharCode(i));
+                }
+            }
+        }else if(!isNaN(from)){
+            if (from < to) {
+                for (let i = from; i <= to; i = i + step) {
+                    result.push(i);
+                }
+            } else {
+                for (let i = from; i >= to; i = i - step) {
+                    result.push(i);
+                }
+            }
+        }else {
+            throw  TypeError("Only String and number are supported");
+        }
+        return result;
+    }
+
+    console.log("Check num_string_range 1: " + num_string_range('a',"z",2));
+    console.log("Check num_string_range 2 : " + num_string_range('Z',"A",2));
+    console.log("Check num_string_range 3 : " + num_string_range(0,-5,1));
+    console.log("Check num_string_range 4 : " + num_string_range(0, 25,5));
+    console.log("Check num_string_range 5 : " + num_string_range(20,5,5));
+    console.log("Check num_string_range 6 : " + num_string_range(20,'a',5));
+    console.log("Check num_string_range 7 : " + num_string_range(2.0,'a',5));
+
+</script>
+<body>
+</body>
+</html>
